@@ -1,0 +1,35 @@
+cmake_minimum_required(VERSION 3.21)
+
+## Set Project Name.
+project(Graph_C)
+
+## Set the C standard requirements.
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED True)
+#message(STATUS "C Standard: ${CMAKE_C_STANDARD}")
+#message(STATUS "C Standard: ${CMAKE_C_STANDARD_REQUIRED}")
+
+set(SRC_CONTAINER src)
+set(INC_CONTAINER inc)
+
+## Set Inluded Source Files.
+set(SRC_FILES 
+    ${SRC_CONTAINER}/MyGraph.c
+    main.c)
+
+## Print current source directory. 
+message("Current source directory: " ${CMAKE_SOURCE_DIR})
+
+## Check the source files.
+message(STATUS "Included Source Files: " ${SRC_FILES})
+
+if(EXISTS main.c)
+    message("main.c exists")
+else()
+    message(FATAL_ERROR "main.c doesn't exist")
+endif()
+
+## Set Exe File.
+add_executable(output ${SRC_FILES})
+
+target_include_directories(output PUBLIC ${INC_CONTAINER}/)
