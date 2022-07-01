@@ -1,5 +1,7 @@
 //=============================> .INC
-#include "MyGraphLib.h"
+#include "inc/MyGraphLib.h"
+#include "inc/MyQueueLib.h"
+// #include "inc/MyStackLib.h"
 //=============================> .DATA
 
 //=============================> .MAIN
@@ -7,7 +9,7 @@ int main(void)
 {
     // Change terimnal color: GREEN.
     system("COLOR 0A");
-
+/*
     GraphEdge myedges[] =
     {
         {1,30 ,5},
@@ -23,6 +25,26 @@ int main(void)
     MyGraph *mygraph = CreateGraph(myedges, n);
 
     printgraph(mygraph);
+*/
+
+    MyQueue *Q = CreateQueue();
+
+    for(int i = 20; i > 0; i--)
+        enqueue(Q, rand()%1000);
+    
+    printf("\n");
+    qNode *temp = Q->front;
+    while(temp != NULL)
+     {   
+        printf("%d ", temp->data);
+        temp = temp->next;
+     }
+    printf("\n Queue size: %d", SizeofQ(Q));
+    printf("\n Front-> %d", Q->front->data);
+    printf("\n Rear-> %d", Q->rear->data);
+    printf("\n Top-> %d", Q->top->data);
+
+    DestroyQueue(Q);
 
     printf("\n");
     return 0;
